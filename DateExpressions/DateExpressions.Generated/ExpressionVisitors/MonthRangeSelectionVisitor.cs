@@ -12,7 +12,7 @@ namespace DateExpressions.Generated.ExpressionVisitors
         //todo should be more flexible, like from 2nd to 3rd month
         public IPeriodsSelector<MonthPeriod> Visit(ExpressionParser.MonthrangeselectionContext context)
         {
-            return new RangePeriodsSelector<MonthPeriod, int>(
+            return new RangePeriodsSelector<MonthPeriod>(
                 getIndexOfPeriod: month => month.Month,
                 @from: _monthVisitor.Visit(context.@from),
                 to: _monthVisitor.Visit(context.to));

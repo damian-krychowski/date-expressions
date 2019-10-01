@@ -5,15 +5,14 @@ using DateExpressions.Generated.Infrastructure;
 
 namespace DateExpressions.Generated.PeriodSelectors
 {
-    internal class RangePeriodsSelector<TPeriod, TIndex> :
+    internal class RangePeriodsSelector<TPeriod> :
         IPeriodsSelector<TPeriod>
-        where TIndex: IComparable<TIndex>
     {
-        private readonly TIndex _from;
-        private readonly TIndex _to;
-        private readonly Func<TPeriod, TIndex> _getIndexOfPeriod;
+        private readonly int _from;
+        private readonly int _to;
+        private readonly Func<TPeriod, int> _getIndexOfPeriod;
 
-        public RangePeriodsSelector(Func<TPeriod, TIndex> getIndexOfPeriod, TIndex from, TIndex to)
+        public RangePeriodsSelector(Func<TPeriod, int> getIndexOfPeriod, int from, int to)
         {
             _from = @from;
             _to = to;
@@ -21,6 +20,9 @@ namespace DateExpressions.Generated.PeriodSelectors
         }
         
         public IEnumerable<TPeriod> Pick(IEnumerable<TPeriod> periods)
-            => periods.Where(period => _getIndexOfPeriod(period).IsWithin(_from, _to));
+            => Enumerable.Range(_from, _to - _from + 1)
+                .SelectMany(index => periods
+                    .TryGetFirst(period => _getIndexOfPeriod(period) == index)
+                    .ToEnumerable());
     }
 }

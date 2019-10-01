@@ -511,28 +511,30 @@ namespace DateExpressions.Test
         }
 
         [Fact]
-        public void can_get_1st_of_2nd_and_3rd_month_of_every_year()
-        {
-            Assert
-                .Expression("1st of 2nd and 3rd month of every year")
-                .From("2019-02-01")
-                .To("2019-05-15")
-                .ShouldGive(
-                    "2019-02-01",
-                    "2019-03-01"
-                );
-        }
-
-        [Fact]
         public void can_get_1st_of_2nd_and_3rd_month()
         {
             Assert
                 .Expression("1st of 2nd and 3rd month")
                 .From("2019-02-01")
-                .To("2019-05-15")
+                .To("2020-05-15")
                 .ShouldGive(
                     "2019-03-01",
                     "2019-04-01"
+                );
+        }
+
+        [Fact]
+        public void can_get_1st_of_2nd_and_3rd_month_of_every_year()
+        {
+            Assert
+                .Expression("1st of 2nd and 3rd month of every year")
+                .From("2019-02-01")
+                .To("2020-05-15")
+                .ShouldGive(
+                    "2019-02-01",
+                    "2019-03-01",
+                    "2020-02-01",
+                    "2020-03-01"
                 );
         }
 
@@ -570,13 +572,34 @@ namespace DateExpressions.Test
             Assert
                 .Expression("1st day of every month from february to may and december")
                 .From("2019-01-01")
-                .To("2019-12-31")
+                .To("2020-12-31")
                 .ShouldGive(
                     "2019-02-01",
                     "2019-03-01",
                     "2019-04-01",
                     "2019-05-01",
                     "2019-12-01"
+                );
+        }
+
+        [Fact]
+        public void can_get_1st_day_of_months_from_february_to_may_and_december_of_every_year()
+        {
+            Assert
+                .Expression("1st day of every month from february to may and december of every year")
+                .From("2019-01-01")
+                .To("2020-12-31")
+                .ShouldGive(
+                    "2019-02-01",
+                    "2019-03-01",
+                    "2019-04-01",
+                    "2019-05-01",
+                    "2019-12-01",
+                    "2020-02-01",
+                    "2020-03-01",
+                    "2020-04-01",
+                    "2020-05-01",
+                    "2020-12-01"
                 );
         }
 

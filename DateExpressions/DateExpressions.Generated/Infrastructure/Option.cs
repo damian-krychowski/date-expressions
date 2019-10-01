@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DateExpressions.Generated.Infrastructure
 {
@@ -67,6 +68,11 @@ namespace DateExpressions.Generated.Infrastructure
 
             item = default(T);
             return false;
+        }
+
+        public IEnumerable<T> ToEnumerable()
+        {
+            if (HasItem) yield return Item;
         }
 
         public override bool Equals(object obj)
