@@ -6,15 +6,9 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class PointInTimeVisitor
     {
-        private readonly OrdinalVisitor _ordinalVisitor;
-        private readonly DayOfWeekVisitor _dayOfWeekVisitor;
-
-        public PointInTimeVisitor(OrdinalVisitor ordinalVisitor, DayOfWeekVisitor dayOfWeekVisitor)
-        {
-            _ordinalVisitor = ordinalVisitor;
-            _dayOfWeekVisitor = dayOfWeekVisitor;
-        }
-
+        private readonly OrdinalVisitor _ordinalVisitor = new OrdinalVisitor();
+        private readonly DayOfWeekVisitor _dayOfWeekVisitor = new DayOfWeekVisitor();
+        
         public PointInTime Visit(ExpressionParser.PointintimeContext context)
         {
             return new PointInTime(

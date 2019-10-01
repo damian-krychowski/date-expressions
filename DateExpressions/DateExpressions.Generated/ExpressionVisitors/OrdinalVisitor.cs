@@ -7,12 +7,7 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class OrdinalVisitor
     {
-        private readonly NumeralVisitor _numeralVisitor;
-
-        public OrdinalVisitor(NumeralVisitor numeralVisitor)
-        {
-            _numeralVisitor = numeralVisitor;
-        }
+        private readonly NumeralVisitor _numeralVisitor = new NumeralVisitor();
 
         public IOrdinals Visit(ExpressionParser.OrdinalsContext context)
         {

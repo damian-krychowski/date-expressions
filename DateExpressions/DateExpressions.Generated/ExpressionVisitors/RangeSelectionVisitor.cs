@@ -6,12 +6,7 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class RangeSelectionVisitor
     {
-        private readonly PointInTimeVisitor _pointInTimeVisitor;
-
-        public RangeSelectionVisitor(PointInTimeVisitor pointInTimeVisitor)
-        {
-            _pointInTimeVisitor = pointInTimeVisitor;
-        }
+        private readonly PointInTimeVisitor _pointInTimeVisitor = new PointInTimeVisitor();
 
         public RangeSelector Visit(ExpressionParser.RangeselectionContext context)
         {

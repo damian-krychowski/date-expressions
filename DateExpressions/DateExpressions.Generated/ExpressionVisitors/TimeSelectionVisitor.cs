@@ -7,22 +7,9 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class TimeSelectionVisitor
     {
-        private readonly RangeSelectionVisitor _rangeSelectionVisitor;
-        private readonly OrdinalVisitor _ordinalVisitor;
-        private readonly DayOfWeekVisitor _dayOfWeekVisitor;
-        private readonly DayTheNthVisitor _dayTheNthVisitor;
-
-        public TimeSelectionVisitor(
-            RangeSelectionVisitor rangeSelectionVisitor,
-            OrdinalVisitor ordinalVisitor,
-            DayOfWeekVisitor dayOfWeekVisitor,
-            DayTheNthVisitor dayTheNthVisitor)
-        {
-            _rangeSelectionVisitor = rangeSelectionVisitor;
-            _ordinalVisitor = ordinalVisitor;
-            _dayOfWeekVisitor = dayOfWeekVisitor;
-            _dayTheNthVisitor = dayTheNthVisitor;
-        }
+        private readonly RangeSelectionVisitor _rangeSelectionVisitor = new RangeSelectionVisitor();
+        private readonly OrdinalVisitor _ordinalVisitor = new OrdinalVisitor();
+        private readonly DayOfWeekVisitor _dayOfWeekVisitor = new DayOfWeekVisitor();
 
         public ITimeSelector Visit(ExpressionParser.TimeselectionsContext context)
         {
@@ -51,12 +38,20 @@ namespace DateExpressions.Generated.ExpressionVisitors
                     ordinals: _ordinalVisitor.Visit(context.ordinals()),
                     daySelectors: new[] { new All() });
 
-            if (context.daythenth() != null)
-                return _dayTheNthVisitor.Visit(context.daythenth());
+            if (context.daythenth() != null && context.EVERY() != null)
+                return new DayTheNthVisitor(new All()).Visit(context.daythenth());
 
-            if (context.daysofweek() != null)
+            if (context.daythenth() != null && context.EVERY() == null)
+                return new DayTheNthVisitor(new First()).Visit(context.daythenth());
+
+            if (context.daysofweek() != null && context.EVERY() != null)
                 return new TimeSelector(
                     ordinals: new All(),
+                    daySelectors: _dayOfWeekVisitor.Visit(context.daysofweek()));
+
+            if (context.daysofweek() != null && context.EVERY() == null)
+                return new TimeSelector(
+                    ordinals: new First(),
                     daySelectors: _dayOfWeekVisitor.Visit(context.daysofweek()));
 
             if (context.EVERY() != null && context.DAY() != null)

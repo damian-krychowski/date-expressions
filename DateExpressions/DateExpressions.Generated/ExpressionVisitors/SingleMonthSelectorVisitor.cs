@@ -8,16 +8,8 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class SingleMonthSelectorVisitor
     {
-        private readonly MonthVisitor _monthVisitor;
-        private readonly OrdinalVisitor _ordinalVisitor;
-
-        public SingleMonthSelectorVisitor(
-            MonthVisitor monthVisitor,
-            OrdinalVisitor ordinalVisitor)
-        {
-            _monthVisitor = monthVisitor;
-            _ordinalVisitor = ordinalVisitor;
-        }
+        private readonly MonthVisitor _monthVisitor = new MonthVisitor();
+        private readonly OrdinalVisitor _ordinalVisitor = new OrdinalVisitor();
 
         public IPeriodSelector<MonthPeriod> Visit(ExpressionParser.SinglemonthselectorContext context)
         {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DateExpressions.Generated.Dates;
 using DateExpressions.Generated.DaySelectors;
 using DateExpressions.Generated.Ordinals;
@@ -20,5 +21,10 @@ namespace DateExpressions.Generated
     internal class All<T> : IPeriodsSelector<T>
     {
         public IEnumerable<T> Pick(IEnumerable<T> periods) => periods;
+    }
+
+    internal class First : IOrdinals
+    {
+        public IEnumerable<T> Pick<T>(IEnumerable<T> enumerable) => enumerable.Take(1);
     }
 }

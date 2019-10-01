@@ -10,17 +10,9 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class WeeklySelectionVisitor
     {
-        private readonly WeekSelectorsVisitor _weekSelectorsVisitor;
-        private readonly TimeSelectionVisitor _timeSelectionVisitor;
-
-        public WeeklySelectionVisitor(
-            WeekSelectorsVisitor weekSelectorsVisitor,
-            TimeSelectionVisitor timeSelectionVisitor)
-        {
-            _weekSelectorsVisitor = weekSelectorsVisitor;
-            _timeSelectionVisitor = timeSelectionVisitor;
-        }
-
+        private readonly WeekSelectorsVisitor _weekSelectorsVisitor = new WeekSelectorsVisitor();
+        private readonly TimeSelectionVisitor _timeSelectionVisitor = new TimeSelectionVisitor();
+        
         public WeeklySelection[] Visit(ExpressionParser.WeeklyselectionsContext context)
         {
             return context

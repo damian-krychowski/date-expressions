@@ -9,12 +9,7 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class WeekSelectorsVisitor
     {
-        private readonly OrdinalVisitor _ordinalVisitor;
-
-        public WeekSelectorsVisitor(OrdinalVisitor ordinalVisitor)
-        {
-            _ordinalVisitor = ordinalVisitor;
-        }
+        private readonly OrdinalVisitor _ordinalVisitor = new OrdinalVisitor();
 
         public IPeriodsSelector<WeekPeriod> Visit(ExpressionParser.WeekselectorsContext context)
         {

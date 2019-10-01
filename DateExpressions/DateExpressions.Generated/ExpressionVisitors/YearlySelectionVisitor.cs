@@ -9,17 +9,9 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class YearlySelectionVisitor
     {
-        private readonly YearSelectorVisitor _yearSelectorVisitor;
-        private readonly MonthlySelectionVisitor _monthlySelectionVisitor;
-
-        public YearlySelectionVisitor(
-            YearSelectorVisitor yearSelectorVisitor,
-            MonthlySelectionVisitor monthlySelectionVisitor)
-        {
-            _yearSelectorVisitor = yearSelectorVisitor;
-            _monthlySelectionVisitor = monthlySelectionVisitor;
-        }
-
+        private readonly YearSelectorVisitor _yearSelectorVisitor = new YearSelectorVisitor();
+        private readonly MonthlySelectionVisitor _monthlySelectionVisitor = new MonthlySelectionVisitor();
+        
         public YearlySelection[] Visit(ExpressionParser.YearlyselectionsContext context)
         {
             return context

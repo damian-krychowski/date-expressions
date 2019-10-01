@@ -6,12 +6,7 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class CrossMonthRangeSelectionVisitor
     {
-        private readonly PointInMonthVisitor _pointInMonthVisitor;
-
-        public CrossMonthRangeSelectionVisitor(PointInMonthVisitor pointInMonthVisitor)
-        {
-            _pointInMonthVisitor = pointInMonthVisitor;
-        }
+        private readonly PointInMonthVisitor _pointInMonthVisitor = new PointInMonthVisitor();
 
         public CrossMonthRangeSelection Visit(ExpressionParser.CrossmonthrangeselectionContext context)
         {

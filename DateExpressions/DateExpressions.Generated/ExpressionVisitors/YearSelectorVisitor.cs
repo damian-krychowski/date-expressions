@@ -9,19 +9,10 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class YearSelectorVisitor
     {
-        private readonly NumbersVisitor _numbersVisitor;
-        private readonly OrdinalVisitor _ordinalVisitor;
-        private readonly YearRangeSelectionVisitor _yearRangeSelectionVisitor;
-
-        public YearSelectorVisitor(
-            NumbersVisitor numbersVisitor,
-            OrdinalVisitor ordinalVisitor,
-            YearRangeSelectionVisitor yearRangeSelectionVisitor)
-        {
-            _numbersVisitor = numbersVisitor;
-            _ordinalVisitor = ordinalVisitor;
-            _yearRangeSelectionVisitor = yearRangeSelectionVisitor;
-        }
+        private readonly NumbersVisitor _numbersVisitor = new NumbersVisitor();
+        private readonly OrdinalVisitor _ordinalVisitor = new OrdinalVisitor();
+        private readonly YearRangeSelectionVisitor _yearRangeSelectionVisitor = new YearRangeSelectionVisitor();
+        
 
         public IPeriodsSelector<YearPeriod> Visit(ExpressionParser.YearselectorsContext context)
         {

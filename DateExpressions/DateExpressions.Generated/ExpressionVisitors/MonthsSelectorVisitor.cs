@@ -8,20 +8,10 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class MonthsSelectorVisitor
     {
-        private readonly SingleMonthSelectorVisitor _singleMonthSelectorVisitor;
-        private readonly OrdinalVisitor _ordinalVisitor;
-        private readonly MonthRangeSelectionVisitor _monthRangeSelectionVisitor;
-
-        public MonthsSelectorVisitor(
-            SingleMonthSelectorVisitor singleMonthSelectorVisitor,
-            OrdinalVisitor ordinalVisitor,
-            MonthRangeSelectionVisitor monthRangeSelectionVisitor)
-        {
-            _singleMonthSelectorVisitor = singleMonthSelectorVisitor;
-            _ordinalVisitor = ordinalVisitor;
-            _monthRangeSelectionVisitor = monthRangeSelectionVisitor;
-        }
-
+        private readonly SingleMonthSelectorVisitor _singleMonthSelectorVisitor = new SingleMonthSelectorVisitor();
+        private readonly OrdinalVisitor _ordinalVisitor = new OrdinalVisitor();
+        private readonly MonthRangeSelectionVisitor _monthRangeSelectionVisitor = new MonthRangeSelectionVisitor();
+        
         public IPeriodsSelector<MonthPeriod> Visit(ExpressionParser.MonthsselectorsContext context)
         {
             var monthGroups = context.monthsselector();

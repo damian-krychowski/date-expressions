@@ -7,12 +7,7 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class MonthRangeSelectionVisitor
     {
-        private readonly MonthVisitor _monthVisitor;
-
-        public MonthRangeSelectionVisitor(MonthVisitor monthVisitor)
-        {
-            _monthVisitor = monthVisitor;
-        }
+        private readonly MonthVisitor _monthVisitor = new MonthVisitor();
 
         //todo should be more flexible, like from 2nd to 3rd month
         public IPeriodsSelector<MonthPeriod> Visit(ExpressionParser.MonthrangeselectionContext context)

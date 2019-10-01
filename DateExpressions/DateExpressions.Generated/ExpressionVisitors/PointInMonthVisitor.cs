@@ -6,19 +6,9 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class PointInMonthVisitor
     {
-        private readonly OrdinalVisitor _ordinalVisitor;
-        private readonly DayOfWeekVisitor _dayOfWeekVisitor;
-        private readonly SingleMonthSelectorVisitor _singleMonthSelectorVisitor;
-
-        public PointInMonthVisitor(
-            OrdinalVisitor ordinalVisitor,
-            DayOfWeekVisitor dayOfWeekVisitor,
-            SingleMonthSelectorVisitor singleMonthSelectorVisitor)
-        {
-            _ordinalVisitor = ordinalVisitor;
-            _dayOfWeekVisitor = dayOfWeekVisitor;
-            _singleMonthSelectorVisitor = singleMonthSelectorVisitor;
-        }
+        private readonly OrdinalVisitor _ordinalVisitor = new OrdinalVisitor();
+        private readonly DayOfWeekVisitor _dayOfWeekVisitor = new DayOfWeekVisitor();
+        private readonly SingleMonthSelectorVisitor _singleMonthSelectorVisitor = new SingleMonthSelectorVisitor();
 
         public PointInMonth Visit(ExpressionParser.PointinmonthContext context)
         {

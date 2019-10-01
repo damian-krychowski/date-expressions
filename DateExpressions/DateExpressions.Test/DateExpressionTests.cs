@@ -48,7 +48,8 @@ namespace DateExpressions.Test
             Assert
                 .Expressions(
                     "1st monday",
-                    "first monday")
+                    "first monday",
+                    "monday")
                 .From("2019-02-10")
                 .To("2020-02-27")
                 .ShouldGive("2019-02-11");
@@ -97,9 +98,7 @@ namespace DateExpressions.Test
         public void can_get_every_monday()
         {
             Assert
-                .Expressions(
-                    "every monday",
-                    "monday")
+                .Expressions("every monday")
                 .From("2019-03-01")
                 .To("2019-03-31")
                 .ShouldGive(
@@ -111,13 +110,27 @@ namespace DateExpressions.Test
         }
 
         [Fact]
+        public void can_get_monday_tuesday_and_saturday()
+        {
+            Assert
+                .Expressions(
+                    "monday, tuesday and saturday")
+                .From("2019-03-01")
+                .To("2019-03-17")
+                .ShouldGive(
+                    "2019-03-02",
+                    "2019-03-04",
+                    "2019-03-05"
+                );
+        }
+
+        [Fact]
         public void can_get_every_monday_tuesday_and_saturday()
         {
             Assert
                 .Expressions(
                     "every monday, every tuesday and every saturday",
-                    "every monday, tuesday and saturday",
-                    "monday, tuesday and saturday")
+                    "every monday, tuesday and saturday")
                 .From("2019-03-01")
                 .To("2019-03-17")
                 .ShouldGive(

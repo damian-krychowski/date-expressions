@@ -10,20 +10,10 @@ namespace DateExpressions.Generated.ExpressionVisitors
 {
     internal class MonthlySelectionVisitor
     {
-        private readonly MonthsSelectorVisitor _monthsSelectorVisitor;
-        private readonly WeeklySelectionVisitor _weeklySelectionVisitor;
-        private readonly CrossMonthRangeSelectionVisitor _crossMonthRangeSelectionVisitor;
-
-        public MonthlySelectionVisitor(
-            MonthsSelectorVisitor monthsSelectorVisitor,
-            WeeklySelectionVisitor weeklySelectionVisitor,
-            CrossMonthRangeSelectionVisitor crossMonthRangeSelectionVisitor)
-        {
-            _monthsSelectorVisitor = monthsSelectorVisitor;
-            _weeklySelectionVisitor = weeklySelectionVisitor;
-            _crossMonthRangeSelectionVisitor = crossMonthRangeSelectionVisitor;
-        }
-
+        private readonly MonthsSelectorVisitor _monthsSelectorVisitor = new MonthsSelectorVisitor();
+        private readonly WeeklySelectionVisitor _weeklySelectionVisitor = new WeeklySelectionVisitor();
+        private readonly CrossMonthRangeSelectionVisitor _crossMonthRangeSelectionVisitor = new CrossMonthRangeSelectionVisitor();
+        
         public ISelection[] Visit(ExpressionParser.MonthlyselectionsContext context)
         {
             return context
